@@ -1,0 +1,29 @@
+pipeline {
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        sh 'echo "Hello, World"'
+      }
+    }
+    stage('Test') {
+      parallel {
+        stage('Test') {
+          steps {
+            sh 'echo "Now in QA stage"'
+          }
+        }
+        stage('') {
+          steps {
+            sh 'echo "Testing the application here as well"'
+          }
+        }
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'echo "Now Deploying"'
+      }
+    }
+  }
+}
